@@ -430,7 +430,7 @@ uis.controller('uiSelectCtrl',
             ctrl.close(skipFocusser);
             return;
           }
-        }        
+        }
         _resetSearchInput();
         $scope.$broadcast('uis:select', item);
 
@@ -553,6 +553,12 @@ uis.controller('uiSelectCtrl',
         };
 
     ctrl.searchInput.css('width', '10px');
+
+    // For select boxes hidden by angular, which are not on the DOM
+    if (!container) {
+      return;
+    }
+
     $timeout(function() { //Give tags time to render correctly
       if (sizeWatch === null && !updateIfVisible(calculateContainerWidth())) {
         sizeWatch = $scope.$watch(function() {
