@@ -201,10 +201,10 @@ uis.directive('uiSelect',
         }
 
         // See Click everywhere but here event http://stackoverflow.com/questions/12931369
-        $document.on('click', onDocumentClick);
+        $document.on('click touchend', onDocumentClick);
 
         scope.$on('$destroy', function() {
-          $document.off('click', onDocumentClick);
+          $document.off('click touchend', onDocumentClick);
         });
 
         // Move transcluded elements to their correct position in main template
@@ -372,7 +372,7 @@ uis.directive('uiSelect',
         };
 
         var opened = false;
-        
+
         scope.calculateDropdownPos = function() {
           if ($select.open) {
             dropdown = angular.element(element).querySelectorAll('.ui-select-dropdown');
